@@ -1,7 +1,7 @@
-installation
+/installation
 
-cache
-logs
-tmp
+/cache
+/logs
+/tmp
 
 configuration.php
