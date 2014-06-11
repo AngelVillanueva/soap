@@ -319,7 +319,7 @@ final class JApplicationSite extends JApplicationCms
 			$menu  = $menus->getActive();
 
 			// Get language
-			$lang_code = $this->getLanguage()->getTag();
+			$lang_code = JFactory::getLanguage()->getTag();
 			$languages = JLanguageHelper::getLanguages('lang_code');
 
 			$title = $this->get('sitename');
