@@ -11,13 +11,13 @@ class ArticleTest extends \PHPUnit_Framework_TestCase {
         $input->set('view','article');                  
         $input->set('option','com_content');    
         $controller = JControllerLegacy::getInstance('Content');
-        $controller->execute('');       
+        //$controller->execute('');       
     }      
     public function testListArticles() {
         $c = new ContentController();      
         $model = $c->getModel('articles');
         $articles = $model->getItems();
-        var_dump($articles);
+        //var_dump($articles);
         $this->assertNotEmpty($articles);
     }
      

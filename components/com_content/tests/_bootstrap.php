@@ -1,5 +1,6 @@
 <?php
 error_reporting(E_ALL);
+
 date_default_timezone_set('UTC');
 define('_JEXEC', 1);
 define('JOOMLA_PATH',realpath(dirname(__FILE__).'/../../../'));
@@ -19,9 +20,6 @@ if (!defined('_JDEFINES'))
 }
  
 require_once JPATH_BASE . '/includes/framework.php';
- 
-  //$app = JFactory::getApplication('site');
-  // this line generates the unserialize offset error ** Sinapse **
 
 define('JPATH_COMPONENT',JOOMLA_PATH.'/components/com_content');
 require_once JPATH_COMPONENT . '/helpers/route.php';
