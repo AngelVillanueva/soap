@@ -5,4 +5,4 @@
 /tmp
 
 configuration.php
-/tests/runtests.sh
+/tests/log_*.*

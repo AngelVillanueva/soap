@@ -1,8 +1,0 @@
-#!/bin/bash
- 
-# administrator com_content component tests
-cd ../administrator/components/com_content/Tests # cds to avoid JFactory not found errors
-phpunit --stderr -d mysql.default_socket="/Applications/MAMP/tmp/mysql/mysql.sock" . # -d switcher should just be needed with MAMP
-cd ../../../../tests # get ready for next test if any
-
-exit
