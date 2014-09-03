@@ -22,3 +22,5 @@ if (!defined('_JDEFINES'))
 require_once JPATH_BASE . '/includes/framework.php';
 define('JPATH_COMPONENT',JOOMLA_PATH.'/components/com_content');
 require_once JPATH_COMPONENT . '/helpers/route.php';
+
+require_once JOOMLA_PATH.'/tests/test_helpers.php';
