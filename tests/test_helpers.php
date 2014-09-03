@@ -36,3 +36,15 @@
 
     return $result;
   }
+  function borrarUsuario($name) {
+    $db = JFactory::getDbo();
+    $query = $db->getQuery(true);
+    $query->select('id');
+    $query->from($db->quoteName('#__users'));
+    $query->where($db->quoteName('name')." = ".$db->quote($name));
+
+    $db->setQuery($query);
+    $result = $db->loadObject();
+    $test_user = JUser::getInstance($result->id);
+    $test_user->delete();
+  }

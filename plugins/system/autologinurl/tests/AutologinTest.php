@@ -2,22 +2,14 @@
 
 class AutologinTest extends \PHPUnit_Framework_TestCase {
     
-    /**
-    * previamente creamos un usario de pruebas
-    * @var string $name Nombre para el usuario de pruebas
-    * @var string $password Constraseña para el usuario de pruebas
-    * @return integer Id del usuario de pruebas creado
-    */
     public function setUp() {
         // inicia aplicación Joomla
         $app = JFactory::getApplication('site');
-        // 
-        // crea una matriz con los datos de un usuario de test
-        if($existingUserTest = buscarUsuario("testAdmin") ){
-            $existing = JUser::getInstance($existingUserTest->id);
-            $existing->delete();
+        // crea un usuario de prueba si no existe
+        if(!$existingUserTest = buscarUsuario("testAdmin") ){
+            $test_user = crearUsuario("testAdmin", "contrasena");
         }
-        $test_user = crearUsuario("testAdmin", "contrasena");
+        
     }  
     
     /**
@@ -68,21 +60,10 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @afterClass
-     * borrar el usuario creados para el test después de realizar los tests
+     * borra el usuario creado para el test después de realizar los tests
      */
-    public static function tearDownTestUser() {
-        $name = "testAdmin";
-
-        $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query->select('id');
-        $query->from($db->quoteName('#__users'));
-        $query->where($db->quoteName('name')." = ".$db->quote($name));
- 
-        $db->setQuery($query);
-        $result = $db->loadObject();
-        $test_user = JUser::getInstance($result->id);
-        $test_user->delete();
+    public static function tearDownTestUserAfter() {
+        borrarUsuario("testAdmin");
     }
      
 }
