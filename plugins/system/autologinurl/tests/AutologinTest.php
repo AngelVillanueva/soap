@@ -5,9 +5,13 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         // inicia aplicación Joomla
         $app = JFactory::getApplication('site');
+        // recupera el nombre y contraseña de un usuario de test
+        // desde tests/test_helpers.php
+        $name = datosUsuarioTest()['nombre'];
+        $pw = datosUsuarioTest()['pw'];
         // crea un usuario de prueba si no existe
-        if(!$existingUserTest = buscarUsuario("testAdmin") ){
-            $test_user = crearUsuario("testAdmin", "contrasena");
+        if(!$existingUserTest = buscarUsuario($name) ){
+            $test_user = crearUsuario($name, $pw);
         }
         
     }  
@@ -15,7 +19,6 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
     /**
      * Test para comprobar que el usuario de prueba se autologea utilizando
      * sus credenciales en la URL de entrada
-     * 
      * @var string $css_element Sólo debe aparecer cuando el usuario está logeado
      * @return boolean True si el test pasa
      */
@@ -24,8 +27,8 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
         // utilizar los mismos valores para $name, $password que en setUp()
         $app = JFactory::getApplication('site');
         $css_element = "logout-button";
-        $name = "testAdmin";
-        $password = "contrasena";
+        $name = datosUsuarioTest()['nombre'];
+        $password = datosUsuarioTest()['pw'];
         // accede a la aplicación utilizando cURL
         $curl = curl_init("http://localhost:8888/soap/index.php?UserId=$name&pwd=$password");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -47,8 +50,10 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
         // utilizar los mismos valores para $name, $password que en setUp()
         $app = JFactory::getApplication('site');
         $css_element = "logout-button";
-        $name = "testAdmins";
-        $password = "contrasena";
+        $name = datosUsuarioTest()['nombre'];
+        $password = datosUsuarioTest()['pw'];
+        // cambio las credenciales para que sean incorrectas
+        $name = $name."a";
         // accede a la aplicación utilizando cURL
         $curl = curl_init("http://localhost:8888/soap/index.php?UserId=$name&pwd=$password");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);

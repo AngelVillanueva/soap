@@ -1,4 +1,10 @@
 <?php
+  function datosUsuarioTest() {
+    $datos = array();
+    $datos['nombre'] = "testAdmin";
+    $datos['pw'] = "contrasena";
+    return $datos;
+  } 
   function crearUsuario($name, $password) {
     $salt   = JUserHelper::genRandomPassword(32);
     $crypted  = JUserHelper::getCryptedPassword($password, $salt);
