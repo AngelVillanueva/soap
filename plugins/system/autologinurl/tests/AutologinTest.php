@@ -109,7 +109,8 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
      * borra el usuario creado para el test después de realizar los tests
      */
     public static function tearDownTestUserAfter() {
-        borrarUsuario("testAdmin");
+        $username = datosUsuarioTest()['username'];
+        borrarUsuario($username);
     }
      
 }
