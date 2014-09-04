@@ -6,7 +6,7 @@
    */
   function datosUsuarioTest() {
     $datos = array();
-    $datos['nombre'] = "testAdmin";
+    $datos['username'] = "testAdmin";
     $datos['pw'] = "contrasena";
     return $datos;
   }
@@ -16,13 +16,13 @@
    * @param  string $password contraseña deseada (sin encriptar)
    * @return integer $user->id id del usuario creado
    */
-  function crearUsuario($name, $password) {
+  function crearUsuario($username, $password) {
     $salt   = JUserHelper::genRandomPassword(32);
     $crypted  = JUserHelper::getCryptedPassword($password, $salt);
     $cpassword = $crypted.':'.$salt;
     $data = array(
-        "name"=> $name,
-        "username"=>'TestAdmin',
+        "name"=> "test_user",
+        "username"=>$username,
         "password"=>$password,
         "password2"=>$password,
         "email"=>'info@example.com',
@@ -46,12 +46,12 @@
    * @param  string $name nombre del usuario
    * @return object usuario o null
    */
-  function buscarUsuario($name) {
+  function buscarUsuario($username) {
     $db = JFactory::getDbo();
     $query = $db->getQuery(true);
     $query->select('id');
     $query->from($db->quoteName('#__users'));
-    $query->where($db->quoteName('name')." = ".$db->quote($name));
+    $query->where($db->quoteName('username')." = ".$db->quote($username));
 
     $db->setQuery($query);
     $result = $db->loadObject();
@@ -63,12 +63,12 @@
    * @param  string $name nombre del usuario
    * @return boolean       true para éxito, false para fracaso
    */
-  function borrarUsuario($name) {
+  function borrarUsuario($username) {
     $db = JFactory::getDbo();
     $query = $db->getQuery(true);
     $query->select('id');
     $query->from($db->quoteName('#__users'));
-    $query->where($db->quoteName('name')." = ".$db->quote($name));
+    $query->where($db->quoteName('username')." = ".$db->quote($username));
 
     $db->setQuery($query);
     $result = $db->loadObject();
