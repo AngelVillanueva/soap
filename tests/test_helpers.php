@@ -1,10 +1,21 @@
 <?php
+
+  /**
+   * Devuelve un nombre de usuario y contraseña para los tests
+   * @return array nombre de usuario('nombre':string) y contraseña('pw':string)
+   */
   function datosUsuarioTest() {
     $datos = array();
     $datos['nombre'] = "testAdmin";
     $datos['pw'] = "contrasena";
     return $datos;
-  } 
+  }
+  /**
+   * Devuelve un usuario para los tests
+   * @param  string $name nombre de usuario deseado
+   * @param  string $password contraseña deseada (sin encriptar)
+   * @return integer $user->id id del usuario creado
+   */
   function crearUsuario($name, $password) {
     $salt   = JUserHelper::genRandomPassword(32);
     $crypted  = JUserHelper::getCryptedPassword($password, $salt);
@@ -30,6 +41,11 @@
     // Devuelve el id del usuario recién creado
     return $user->id;
   }
+  /**
+   * busca un usuario en la base de datos Joomla a partir de su nombre
+   * @param  string $name nombre del usuario
+   * @return object usuario o null
+   */
   function buscarUsuario($name) {
     $db = JFactory::getDbo();
     $query = $db->getQuery(true);
@@ -42,6 +58,11 @@
 
     return $result;
   }
+  /**
+   * borra un usuario de la base de datos a partir de su nombre
+   * @param  string $name nombre del usuario
+   * @return boolean       true para éxito, false para fracaso
+   */
   function borrarUsuario($name) {
     $db = JFactory::getDbo();
     $query = $db->getQuery(true);
@@ -53,4 +74,18 @@
     $result = $db->loadObject();
     $test_user = JUser::getInstance($result->id);
     $test_user->delete();
+  }
+  /**
+   * Devuelve una url precedida con http://  terminada en / si no tiene ese formato
+   * @return string url formada
+   */
+  function addhttp($url) {
+    if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+        $url = "http://" . $url;
+    }
+    if (substr($url, -1) !== "/") {
+        $url = $url."/";
+    }
+    return $url;
+    
   }

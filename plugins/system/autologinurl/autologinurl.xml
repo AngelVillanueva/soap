@@ -16,6 +16,13 @@
 		<filename>tests/AutologinTest.php</filename>
 		<filename>tests/phpunit.xml</filename>
 	</files>
+	<config>
+    <fields name="params">
+      <fieldset name="basic">
+        <field name="url_aplicacion"  type="text" default="" label="URL de la aplicación" description="Se utiliza en los tests. Ejemplo: webcliente.pacifico-meetings.com o localhost:8888/mamp/webcliente. No hace falta incluir el protocolo ni acabar en /." />
+      </fieldset>
+    </fields>
+  </config>
 	<languages>
 		<language tag="en-GB">en-GB.plg_system_autologinurl.ini</language>
 		<language tag="en-GB">en-GB.plg_system_autologinurl.sys.ini</language>

@@ -29,8 +29,12 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
         $css_element = "logout-button";
         $name = datosUsuarioTest()['nombre'];
         $password = datosUsuarioTest()['pw'];
+        // importa el plugin de Autologinurl y recupera el parámetro URL de entrada
+        $plugin = JPluginHelper::getPlugin('system', 'autologinurl');
+        $params = new JRegistry($plugin->params);
+        $aplicacion_web_url = addhttp($params->get('url_aplicacion'));
         // accede a la aplicación utilizando cURL
-        $curl = curl_init("http://localhost:8888/soap/index.php?UserId=$name&pwd=$password");
+        $curl = curl_init("$aplicacion_web_url?UserId=$name&pwd=$password");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $resultado = curl_exec($curl);
         // TRUE si la página contiene el elemento css que sólo aparece cuando
