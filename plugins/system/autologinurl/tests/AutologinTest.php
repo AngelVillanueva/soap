@@ -33,8 +33,10 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
         $plugin = JPluginHelper::getPlugin('system', 'autologinurl');
         $params = new JRegistry($plugin->params);
         $aplicacion_web_url = addhttp($params->get('url_aplicacion'));
+        $userparam = $params->get('userparam');
+        $pwparam = $params->get('pwparam');
         // accede a la aplicación utilizando cURL
-        $curl = curl_init("$aplicacion_web_url?UserId=$username&pwd=$password");
+        $curl = curl_init("$aplicacion_web_url?$userparam=$username&$pwparam=$password");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $resultado = curl_exec($curl);
         // TRUE si la página contiene el elemento css que sólo aparece cuando
@@ -61,8 +63,10 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
         $plugin = JPluginHelper::getPlugin('system', 'autologinurl');
         $params = new JRegistry($plugin->params);
         $aplicacion_web_url = addhttp($params->get('url_aplicacion'));
+        $userparam = $params->get('userparam');
+        $pwparam = $params->get('pwparam');
         // accede a la aplicación utilizando cURL
-        $curl = curl_init("$aplicacion_web_url?UserId=$username&pwd=$password");
+        $curl = curl_init("$aplicacion_web_url?$userparam=$username&$pwparam=$password");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $resultado = curl_exec($curl);
         // TRUE si la página contiene el elemento css que sólo aparece cuando
@@ -89,8 +93,10 @@ class AutologinTest extends \PHPUnit_Framework_TestCase {
         $plugin = JPluginHelper::getPlugin('system', 'autologinurl');
         $params = new JRegistry($plugin->params);
         $aplicacion_web_url = addhttp($params->get('url_aplicacion'));
+        $userparam = $params->get('userparam');
+        $pwparam = $params->get('pwparam');
         // accede a la aplicación utilizando cURL
-        $curl = curl_init("$aplicacion_web_url?UserId=$username&pwd=$password");
+        $curl = curl_init("$aplicacion_web_url?$userparam=$username&$pwparam=$password");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $resultado = curl_exec($curl);
         // TRUE si la página contiene el elemento css que sólo aparece cuando

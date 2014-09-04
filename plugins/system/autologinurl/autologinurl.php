@@ -9,8 +9,11 @@ class plgSystemAutologinurl extends JPlugin {
     $jinput = $app->input;
     $credentials = array();
 
-    $credentials['username'] = $jinput->get('UserId');
-    $credentials['password'] = $jinput->get('pwd');
+    $userparam = $this->params->get('userparam');
+    $pwparam = $this->params->get('pwparam');
+
+    $credentials['username'] = $jinput->get($userparam);
+    $credentials['password'] = $jinput->get($pwparam);
 
     if (!empty($credentials['username']) && !empty($credentials['password'])) {
       $resultado = $app->login($credentials);

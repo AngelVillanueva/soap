@@ -20,6 +20,8 @@
     <fields name="params">
       <fieldset name="basic">
         <field name="url_aplicacion"  type="text" default="" label="URL de la aplicación" description="Se utiliza en los tests. Ejemplo: webcliente.pacifico-meetings.com o localhost:8888/mamp/webcliente. No hace falta incluir el protocolo ni acabar en /." />
+        <field name="userparam"  type="text" default="UserId" label="Nombre del parámetro para el nombre de usuario" description="Sensible a mayúsculas/minúsculas." />
+        <field name="pwparam"  type="text" default="pwd" label="Nombre del parámetro para la contraseña" description="Sensible a mayúsculas/minúsculas." />
       </fieldset>
     </fields>
   </config>
